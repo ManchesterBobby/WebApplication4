@@ -1,0 +1,33 @@
+﻿@model WebApplication4.Models.ScheduledMeetingViewModel
+
+@{
+    ViewData["Title"] = "Add Participants";
+    ViewBag.Title = "AddParticipant";
+}
+
+<div class="jumbotron">
+    <h2>Add Participants</h2>
+</div>
+@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+@using (Html.BeginForm("Index", "Participants", FormMethod.Post))
+{
+        <div class="form-group">
+            <label class="control-label col-md-2">Choose Meeting</label>
+            <div class="col-md-6">
+            @Html.DropDownListFor(model => model.MeetingId, new SelectList(ViewBag.Meetings, "MeetingId", "Description"), new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Add Employee</label>
+            <div class="col-md-6">
+            @Html.DropDownListFor(model => model.EmployeeId, new SelectList(ViewBag.Employees, "EmployeeId", "Description"), new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-6">
+                <input type="submit" value="Submit" class="btn" />
+            </div>
+        </div>
+}
